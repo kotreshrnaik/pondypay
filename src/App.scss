@@ -1,0 +1,76 @@
+/* The following block can be included in a custom.scss */
+
+/* make the customizations */
+$theme-colors: (
+  "primary": #16b2bf,
+  "secondary": #ffc800,
+  "dark": #000000,
+  "success": #198754,
+  "info": #0dcaf0,
+  "warning": #813588,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+);
+
+/* import bootstrap to set changes */
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+$primary-color: #16b2bf;
+$secondary-color: #001524;
+$white-color: white;
+$black-color: #000;
+$tertiary-color: #f8f9fa;
+
+.SRLDownloadButton {
+    display: none !important;
+}
+
+#top-header {
+    .nav-link {
+        color: $white-color;
+        &:hover {
+            color: $black-color;
+        }
+    }
+}
+#navbar {
+  .nav-link {
+      padding: 30px 40px;
+      align-items: center;
+      color: $secondary-color;
+      font-weight: 600;
+      &:hover {
+          color: $primary-color;
+      }
+  }
+  .dropdown-item {
+      color: $secondary-color;
+      font-weight: 600;
+      &:hover {
+          color: $primary-color;
+          background-color: $white-color;
+      }
+  }
+}
+
+#footer {
+ul {
+    color: $white-color;
+}                                                                                             
+h2 {
+    color: $secondary-color;
+    font-size: 18px;
+}
+address {
+    color: $white-color;
+}
+a {
+    text-decoration: none;
+    color: $white-color;
+    &:hover {
+        color: $secondary-color;
+    }
+
+}
+
+}
