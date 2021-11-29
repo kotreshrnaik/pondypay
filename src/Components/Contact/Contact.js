@@ -10,7 +10,7 @@ const Contact = () => {
     
   return (
     <div>
-      <div id="about-us" className="bg-secondary">
+      <div id="about-us" className="bg-primary">
         <Container>
           <Row>
             <Col md={12}>
@@ -25,7 +25,7 @@ const Contact = () => {
         <Container>
           <Row>
             <Col md={7}>
-              <h3 className="text-secondary">Have you any question?</h3>
+              <h3 className="text-primary">Have you any question?</h3>
               <p>
                 If you have any query or want to leave a comment about our
                 products & services, drop a message or fill the form below.
@@ -121,7 +121,7 @@ const Contact = () => {
               </Form>
             </Col>
             <Col md={5} className="align-self-center">
-              <div className="bg-secondary rounded text-white">
+              <div className="bg-primary rounded text-white">
                 <div className="p-3 pt-md-5 pb-md-5 ps-md-5 pe-md-5">
                   <Row>
                     <Col md={2} xs={2} className="align-self-center">

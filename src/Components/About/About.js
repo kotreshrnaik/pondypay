@@ -1,16 +1,18 @@
 import React from "react";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
-import Slide1 from "../../Images/Gallery/image-1.png";
+import { Col, Container, Image, Row } from "react-bootstrap";
+import Slide1 from "../../Images/Gallery/sample.png";
 
 const About = () => {
   return (
     <div>
-      <div id="about-us" className="bg-secondary">
+      <div id="about-us" className="bg-primary">
         <Container>
           <Row>
             <Col md={12}>
               <div className="pt-5 pb-5">
-                <h2 className="text-center text-white">About</h2>
+                <h2 className="text-center text-white">
+                  About Pondy Bay See Foods
+                </h2>
               </div>
             </Col>
           </Row>
@@ -20,17 +22,41 @@ const About = () => {
         <Container>
           <Row>
             <Col md={8} className="align-self-center">
-              <h3 className="text-center text-secondary">
-                AT CREATIVE INTERIORS
-              </h3>
               <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
               </p>
               <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
               </p>
               <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
               </p>
             </Col>
             <Col md={4} className="align-self-center">
@@ -48,25 +74,35 @@ const About = () => {
           <Row className="justify-content-center">
             <Col md={6}>
               <div className="bg-white shadow p-3 rounded">
-                <h2 className="pb-2 text-center text-secondary">Our Mision</h2>
-                <div className="text-center text-secondary">
+                <h2 className="pb-2 text-center text-primary">Our Mision</h2>
+                <div className="text-center text-primary">
                   <i className="fas fa-bullseye fs-1 pb-2"></i>
                 </div>
                 <p className="pt-2 text-center">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged.
                 </p>
               </div>
             </Col>
             <Col md={6}>
               <div className="bg-white shadow p-3 rounded">
-                <h2 className="pb-2 text-center text-secondary">
-                  Our Vision
-                </h2>
-                <div className="text-center text-secondary">
+                <h2 className="pb-2 text-center text-primary">Our Vision</h2>
+                <div className="text-center text-primary">
                   <i className="fas fa-bullseye fs-1 pb-2"></i>
                 </div>
                 <p className="pt-2 text-center">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged.
                 </p>
               </div>
             </Col>

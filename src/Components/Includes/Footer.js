@@ -75,9 +75,9 @@ const Footer = () => {
             <Row>
               <Col md={12}>
                 <p className="text-center text-light m-0 pt-2 pb-1">
-                  Copy Rights reserved by Creative Desgns. Developed by{" "}
+                  Copy Rights reserved by Pondy Bay. Developed by{" "}
                   <Link to="http://shanthaswebz.com" target="_blank">
-                    LDCB.
+                    Shanthas Webz.
                   </Link>
                 </p>
               </Col>

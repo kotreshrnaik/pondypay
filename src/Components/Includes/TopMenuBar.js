@@ -4,14 +4,24 @@ import {
   Nav,
   Navbar,
   Image,
-  NavDropdown,
   Row,
   Col,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../Images/logo.png";
+import { useSelector } from 'react-redux';
 
 const TopMenuBar = () => {
+  const cartItems = useSelector(state =>{
+    if(state && state.items && state.items.length > 0)
+    {
+      return state.items
+    }
+    else 
+    {
+      return [];
+    }
+  })
   return (
     <>
       <div id="top-header" className="bg-primary text-white p-1">
@@ -80,15 +90,15 @@ const TopMenuBar = () => {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="me-auto">
+              <Nav className="me-auto ms-auto">
                 <Nav.Link as={Link} to="/">
                   HOME
                 </Nav.Link>
                 <Nav.Link as={Link} to="/about">
-                  ALL PRODUCTS
+                  ABOUT
                 </Nav.Link>
                 <Nav.Link as={Link} to="/products">
-                  ABOUT
+                  ALL PRODUCTS
                 </Nav.Link>
                 <Nav.Link as={Link} to="/contact">
                   CONTACT
@@ -107,7 +117,12 @@ const TopMenuBar = () => {
                 <Nav.Link eventKey={2} href="#memes">
                   SEARCH
                 </Nav.Link>
-                <Nav.Link href="#deets">CART</Nav.Link>
+                <Nav.Link className="position-relative" as={Link} to="/cart">
+                    <i className="fas fa-shopping-cart text-primary"></i>
+                    <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-primary">
+                      {cartItems.length}
+                    </span>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

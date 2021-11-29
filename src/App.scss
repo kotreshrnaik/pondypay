@@ -7,7 +7,7 @@ $theme-colors: (
   "dark": #000000,
   "success": #198754,
   "info": #0dcaf0,
-  "warning": #813588,
+  "warning": #1C2F3C,
   "danger": #dc3545,
   "light": #f8f9fa,
 );
@@ -16,13 +16,34 @@ $theme-colors: (
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 $primary-color: #16b2bf;
-$secondary-color: #001524;
+$secondary-color: #ffc800;
 $white-color: white;
 $black-color: #000;
-$tertiary-color: #f8f9fa;
+$tertiary-color: #9D9E9E;
+$dark-color: #001524;
 
 .SRLDownloadButton {
     display: none !important;
+}
+
+.custom {
+    color: $white-color;
+    text-decoration: none;
+    &:hover {
+        color: $secondary-color;
+    }
+}
+
+.breadcrumb {
+    .breadcrumb-item {
+        &.active {
+            color: $white-color;
+        }
+    }
+}
+
+.fa-trash-can {
+    cursor: pointer;
 }
 
 #top-header {
@@ -35,19 +56,19 @@ $tertiary-color: #f8f9fa;
 }
 #navbar {
   .nav-link {
-      padding: 30px 40px;
+      padding: 30px 20px;
       align-items: center;
-      color: $secondary-color;
+      color: $primary-color;
       font-weight: 600;
       &:hover {
-          color: $primary-color;
+          color: $secondary-color;
       }
   }
   .dropdown-item {
-      color: $secondary-color;
+      color: $primary-color;
       font-weight: 600;
       &:hover {
-          color: $primary-color;
+          color: $secondary-color;
           background-color: $white-color;
       }
   }
@@ -73,4 +94,8 @@ a {
 
 }
 
+}
+
+#quality {
+    background-color: $dark-color;
 }
