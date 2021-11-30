@@ -99,3 +99,10 @@ a {
 #quality {
     background-color: $dark-color;
 }
+
+#fishdata {
+    .link {
+        text-decoration: none;
+        color: $black-color;
+    }
+}

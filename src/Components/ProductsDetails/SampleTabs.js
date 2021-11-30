@@ -5,7 +5,7 @@ function SampleTabs() {
     const [key, setKey] = useState('home');
   
     return (
-      <Tabs justify
+      <Tabs 
         id="controlled-tab-example"
         activeKey={key}
         onSelect={(k) => setKey(k)}

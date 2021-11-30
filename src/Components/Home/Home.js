@@ -3,86 +3,58 @@ import { Col, Container, Image, Button, Card } from "react-bootstrap";
 import MainSlider from "./../Includes/MainSlider";
 import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import FishImage from "../../Images/Gallery/sample.png";
 import AboutImage from "../../Images/slider/Front-Page.png";
-import Testimonials from './../Includes/Testimonials';
+import Testimonials from "./../Includes/Testimonials";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from './../../Store/actions';
+import { addItem } from "./../../Store/actions";
+import axios from "axios";
 
 const Home = () => {
+  const initialData = [];
 
-  const initialData = [{
-    id: 1,
-    title: "Pomfret",
-    imgURL: FishImage,
-    alt: "Pomfret",
-    rating: "*****",
-    description: "content",
-    bntURL: "/services",
-    price: 400
-  },
-  {
-    id: 2,
-    title: "Pomfret",
-    imgURL: FishImage,
-    alt: "Pomfret",
-    rating: "*****",
-    description: "content",
-    bntURL: "/services",
-    price: 400
-  },
-  {
-    id: 3,
-    title: "Pomfret",
-    imgURL: FishImage,
-    alt: "Pomfret",
-    rating: "*****",
-    description: "content",
-    bntURL: "/services",
-    price: 400
-  },
-  {
-    id: 4,
-    title: "Pomfret",
-    imgURL: FishImage,
-    alt: "Pomfret",
-    rating: "*****",
-    description: "content",
-    bntURL: "/services",
-    price: 400
-  }];
-
-  const [FishData, SetFishData] = useState(initialData)
+  const [FishData, SetFishData] = useState(initialData);
 
   const dispatch = useDispatch();
   const handleAddItem = (item) => {
     dispatch(addItem(item));
-  }
+  };
 
-  const cartItems = useSelector(state =>{
-    if(state && state.items && state.items.length > 0)
-    {
-      return state.items
-    }
-    else 
-    {
+  const cartItems = useSelector((state) => {
+    if (state && state.items && state.items.length > 0) {
+      return state.items;
+    } else {
       return [];
     }
-  })
+  });
 
   useEffect(() => {
-    if(cartItems && cartItems.length > 0){
-      SetFishData(FishData.map(products => {
-         let itemInCart = cartItems.find(cartItems => cartItems.id === products.id);
+    if (cartItems && cartItems.length > 0) {
+      SetFishData(
+        FishData.map((products) => {
+          let itemInCart = cartItems.find(
+            (cartItems) => cartItems.id === products.id
+          );
 
-         if(itemInCart)
-         {
-           products.isAdded = true;
-         }
-         return products;
-       }))
+          if (itemInCart) {
+            products.isAdded = true;
+          }
+          return products;
+        })
+      );
     }
-  }, [cartItems])
+  }, [cartItems]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost/react-projects/pondypay/Api/getdata.php")
+      .then((response) => {
+        // console.log(response);
+        SetFishData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   return (
     <div>
@@ -191,8 +163,8 @@ const Home = () => {
           </h2>
           <Row>
             {FishData.map((item) => (
-              <Col md={3} key={item.id}>
-                <Card className="m-1 text-center shadow">
+              <Col md={4} key={item.id}>
+                <Card className="m-1 text-center shadow link" as={Link} to={item.CardURL}>
                   <Card.Img
                     variant="top"
                     src={item.imgURL}
@@ -200,27 +172,32 @@ const Home = () => {
                     className="img-fluid"
                   />
                   <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>{item.rating}</Card.Text>
-                    <Card.Text>{item.price}</Card.Text>
+                    <Card.Title>{item.productTitle}</Card.Title>
+                    <div className="d-flex justify-content-center">
+                      <div>
+                        <Card.Text className="text-decoration-line-through">
+                        ₹ {item.price}
+                        </Card.Text>
+                      </div>
+                      <div>
+                        <Card.Text className="ps-3">₹ {item.price1}</Card.Text>
+                      </div>
+                    </div>
                     <Card.Text>{item.description}</Card.Text>
 
-                    {
-                      item.isAdded ? <Button
-                      variant="primary"
-                      className="text-white"
-                    >
-                      Added
-                    </Button>
-                    :
-                    <Button
-                      variant="primary"
-                      className="text-white"
-                      onClick={ () => handleAddItem(item) }
-                    >
-                      Add to Cart
-                    </Button>
-                    }
+                    {/* {item.isAdded ? (
+                      <Button variant="primary" className="text-white">
+                        Added
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="primary"
+                        className="text-white"
+                        onClick={() => handleAddItem(item)}
+                      >
+                        Add to Cart
+                      </Button>
+                    )} */}
                   </Card.Body>
                 </Card>
               </Col>
@@ -233,8 +210,13 @@ const Home = () => {
         <Container>
           <Row>
             <Col md={4}>
-              <div className="text-center p-2 bg-light shadow" style={{height:'225px'}}>
-                <h2 className="pt-2 pb-2 text-uppercase text-primary">We Catch</h2>
+              <div
+                className="text-center p-2 bg-light shadow"
+                style={{ height: "225px" }}
+              >
+                <h2 className="pt-2 pb-2 text-uppercase text-primary">
+                  We Catch
+                </h2>
                 <p>
                   We use our own boats to catch the best of fish, sea crabs, sea
                   prawns, squids, and many other edible sea creatures.
@@ -242,8 +224,13 @@ const Home = () => {
               </div>
             </Col>
             <Col md={4}>
-              <div className="text-center p-2 bg-light shadow" style={{height:'225px'}}>
-                <h2 className="pt-2 pb-2 text-uppercase text-primary">We Sell</h2>
+              <div
+                className="text-center p-2 bg-light shadow"
+                style={{ height: "225px" }}
+              >
+                <h2 className="pt-2 pb-2 text-uppercase text-primary">
+                  We Sell
+                </h2>
                 <p>
                   Our ‘online’ market gives everyone easy and quick access to
                   know the catch of the day and make the order from anywhere. We
@@ -253,8 +240,13 @@ const Home = () => {
               </div>
             </Col>
             <Col md={4}>
-              <div className="text-center p-2 bg-light shadow" style={{height:'225px'}}>
-                <h2 className="pt-2 pb-2 text-uppercase text-primary">We Satisfy</h2>
+              <div
+                className="text-center p-2 bg-light shadow"
+                style={{ height: "225px" }}
+              >
+                <h2 className="pt-2 pb-2 text-uppercase text-primary">
+                  We Satisfy
+                </h2>
                 <p>
                   We are proud of the quality and condition of our fish and we
                   would love to see it on your menu.
@@ -285,12 +277,16 @@ const Home = () => {
           <Row>
             <Col md={4}>
               <div className="text-center">
-                <h2 className="text-white">Get 10% OFF on your First Purchase!</h2>
+                <h2 className="text-white">
+                  Get 10% OFF on your First Purchase!
+                </h2>
               </div>
             </Col>
             <Col md={5}>
               <div className="text-center">
-                <h2 className="text-secondary">Apply Coupen Code at Checkout</h2>
+                <h2 className="text-secondary">
+                  Apply Coupen Code at Checkout
+                </h2>
               </div>
             </Col>
             <Col md={3}>

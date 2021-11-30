@@ -7,10 +7,11 @@ import Contact from "./Components/Contact/Contact";
 import Products from "./Components/Products/Products";
 import Gallery from "./Components/Gallery/Gallery";
 import Footer from "./Components/Includes/Footer";
-import Sample from "./Components/ProductsDetails/Sample";
+import VanjaramFish from "./Components/Products/VanjaramFish";
 import { Provider } from "react-redux";
 import store from "./Store";
 import Cart from './Components/Cart/Cart';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/products" element={<Products />}></Route>
             <Route path="/gallery" element={<Gallery />}></Route>
-            <Route path="/sample" element={<Sample />}></Route>
+            <Route path="/vanjaram-fish" element={<VanjaramFish />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
           </Routes>
           <Footer />
         </Router>
