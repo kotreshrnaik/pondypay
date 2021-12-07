@@ -163,7 +163,7 @@ const Home = () => {
           </h2>
           <Row>
             {FishData.map((item) => (
-              <Col md={4} key={item.id}>
+              <Col md={3} key={item.id}>
                 <Card className="m-1 text-center shadow link" as={Link} to={item.CardURL}>
                   <Card.Img
                     variant="top"

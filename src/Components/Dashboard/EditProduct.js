@@ -1,38 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { Formik } from "formik";
-import { Container, Form, Row, Col, Table } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Dashboard = () => {
-  // const handleEditClick = (id) => {
-  //   // console.log("edit");
-  // };
+const EditProduct = () => {
+  let history = useNavigate();
 
-  const handleDeleteClick = (id) => {
-    // console.log("delete");
-    axios
-      .get("http://localhost/react-projects/pondypay/Api/delete.php?id=" + id)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const { id } = useParams();
 
-  const [ProductInfo, SetProductInfo] = useState([]);
+  const [values, Setvalues] = useState();
 
   useEffect(() => {
     axios
-      .get("http://localhost/react-projects/pondypay/Api/getdata.php")
+      .get(
+        "http://localhost/react-projects/pondypay/Api/getdatabyid.php?id=" + id
+      )
       .then((response) => {
-        SetProductInfo(response.data);
+        console.log(response.data[0]);
+        Setvalues(response.data[0]);
+        console.log(values);
+        document.getElementById("productTitle").value =
+          response.data[0].productTitle;
+        document.getElementById("price").value = response.data[0].price;
+        document.getElementById("price1").value = response.data[0].price1;
+        document.getElementById("imgURL").value = response.data[0].imgURL;
+        document.getElementById("alt").value = response.data[0].alt;
+        document.getElementById("description").value =
+          response.data[0].description;
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  //   console.log(values)
 
   return (
     <div>
@@ -45,6 +47,8 @@ const Dashboard = () => {
               </h2>
               <Formik
                 initialValues={{
+                  id: id,
+                  CardURL: "",
                   productTitle: "",
                   price: "",
                   price1: "",
@@ -82,7 +86,7 @@ const Dashboard = () => {
 
                     axios
                       .post(
-                        "http://localhost/react-projects/pondypay/Api/savedata.php",
+                        "http://localhost/react-projects/pondypay/Api/update.php",
                         data
                       )
                       .then((response) => {
@@ -115,6 +119,7 @@ const Dashboard = () => {
                             type="text"
                             placeholder="Enter Name"
                             name="productTitle"
+                            id="productTitle"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.productTitle}
@@ -129,6 +134,7 @@ const Dashboard = () => {
                           <Form.Label>Price</Form.Label>
                           <Form.Control
                             placeholder="Enter Price"
+                            id="price"
                             type="tel"
                             name="price"
                             onChange={handleChange}
@@ -144,6 +150,7 @@ const Dashboard = () => {
                           <Form.Control
                             placeholder="Enter Price"
                             type="tel"
+                            id="price1"
                             name="price1"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -158,6 +165,7 @@ const Dashboard = () => {
                           <Form.Control
                             placeholder="http://localhost/react-projects/pondypay/Api/images/"
                             type="text"
+                            id="imgURL"
                             name="imgURL"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -172,6 +180,7 @@ const Dashboard = () => {
                           <Form.Control
                             placeholder="Alt Text"
                             type="text"
+                            id="alt"
                             name="alt"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -189,6 +198,7 @@ const Dashboard = () => {
                             placeholder="Enter Description"
                             as="textarea"
                             rows={15}
+                            id="description"
                             name="description"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -207,7 +217,7 @@ const Dashboard = () => {
                       className="btn btn-primary"
                       disabled={isSubmitting}
                     >
-                      Submit
+                      Update
                     </button>
                   </Form>
                 )}
@@ -216,52 +226,8 @@ const Dashboard = () => {
           </Row>
         </Container>
       </div>
-
-      <div className="pt-3 pb-3 pt-md-5 pb-md-5">
-        <Container>
-          <Table responsive bordered>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Product Title</th>
-                <th>Price</th>
-                <th>Price1</th>
-                <th>Description</th>
-                <th>ImageUrl</th>
-                <th>Alt Text</th>
-                <th>Card Url</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ProductInfo.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.productTitle}</td>
-                  <td>{item.price}</td>
-                  <td>{item.price1}</td>
-                  <td>{item.description}</td>
-                  <td>{item.imgURL}</td>
-                  <td>{item.alt}</td>
-                  <td>{item.CardURL}</td>
-                  <td>
-                    <div className="">
-                      <Link className="text-dark" to={`/product/edit/${item.id}`}>
-                        <i className="fas fa-edit ps-2"></i>
-                      </Link>
-                      <Link className="text-danger" to="" onClick={() => handleDeleteClick(item.id)}>
-                        <i className="far fa-trash-alt ps-2"></i>
-                      </Link>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Container>
-      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default EditProduct;

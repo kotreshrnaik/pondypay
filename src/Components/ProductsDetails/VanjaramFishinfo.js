@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Form,
-  Button,
-  Card,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Image, Form, Button, Card } from "react-bootstrap";
 import sampleFish from "../../Images/Gallery/sample.png";
-import SampleTabs from "../ProductsDetails/SampleTabs";
+import SampleTabs from "./SampleTabs";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./../../Store/actions";
 import { Link } from "react-router-dom";
 
-const VanjaramFish = () => {
+const VanjaramFishinfo = () => {
+
   const initialData = [
     {
       id: 1,
@@ -77,15 +70,13 @@ const VanjaramFish = () => {
       );
     }
   }, [cartItems]);
-
+  
   const [weight, Setweight] = useState(0.5);
-  const [Price, Setprice] = useState(30);
+  const [Price, Setprice] = useState(30); 
 
-  const IncrementCouter = (price,weight) => {
-    Setprice(price);
-    Setweight(weight);
+  const IncrementCouter = () => {
     Setweight(weight + 0.5);
-    Setprice(weight * Price);
+    Setprice(weight * 60);
   };
 
   const DecrementCouter = () => {
@@ -114,7 +105,7 @@ const VanjaramFish = () => {
             </Col>
             <Col md={8}>
               <div className="">
-                <h2 className="pt-2 pb-2">Vanjaram Fish</h2>
+                <h2 className="pt-2 pb-2">Crabe</h2>
                 <p className="">
                   <del className="">₹399 /500g</del> ₹275 /500g
                 </p>
@@ -129,7 +120,6 @@ const VanjaramFish = () => {
                   – A Great Source of Copper – High in Vitamin B2.
                 </p>
               </div>
-
               <div className="pt-3">
                 <SampleTabs />
               </div>
@@ -177,7 +167,7 @@ const VanjaramFish = () => {
                           <div className="">
                             <p
                               className="text-center border p-2 ps-3 pe-3 fw-bold"
-                              onClick={() =>IncrementCouter(item.price, weight)}
+                              onClick={IncrementCouter}
                             >
                               +
                             </p>
@@ -212,20 +202,8 @@ const VanjaramFish = () => {
           </Row>
         </Container>
       </div>
-
-      {/* <div id="sample2" className="pt-3 pb-3 pt-md-5 pb-md-5">
-        <Container>
-          <Row>
-            <Col md={12}>
-              <div className="">
-                <SampleTabs />
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div> */}
     </div>
   );
 };
 
-export default VanjaramFish;
+export default VanjaramFishinfo;

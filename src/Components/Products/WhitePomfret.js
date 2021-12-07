@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./../../Store/actions";
 import { Link } from "react-router-dom";
 
-const VanjaramFish = () => {
+const WhitePomfret = () => {
   const initialData = [
     {
       id: 1,
@@ -81,11 +81,10 @@ const VanjaramFish = () => {
   const [weight, Setweight] = useState(0.5);
   const [Price, Setprice] = useState(30);
 
-  const IncrementCouter = (price,weight) => {
-    Setprice(price);
-    Setweight(weight);
+  const IncrementCouter = () => {
+    // Setprice(price);
     Setweight(weight + 0.5);
-    Setprice(weight * Price);
+    Setprice(weight * 30);
   };
 
   const DecrementCouter = () => {
@@ -177,7 +176,7 @@ const VanjaramFish = () => {
                           <div className="">
                             <p
                               className="text-center border p-2 ps-3 pe-3 fw-bold"
-                              onClick={() =>IncrementCouter(item.price, weight)}
+                              onClick={IncrementCouter}
                             >
                               +
                             </p>
@@ -228,4 +227,4 @@ const VanjaramFish = () => {
   );
 };
 
-export default VanjaramFish;
+export default WhitePomfret;
