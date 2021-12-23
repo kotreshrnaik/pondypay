@@ -79,7 +79,8 @@ const AyalaFishinfo = () => {
     Setprice(weight * 60);
   };
 
-  const DecrementCouter = () => {
+  const DecrementCouter = (id) => {
+    console.log(id);
     if (weight === 0.5) {
       Setweight(0.5);
       Setprice(weight * 60);
@@ -148,7 +149,7 @@ const AyalaFishinfo = () => {
                           <div className="">
                             <p
                               className="text-center border p-2 ps-3 pe-3 fw-bold"
-                              onClick={DecrementCouter}
+                              onClick={() => DecrementCouter(item.id)}
                             >
                               -
                             </p>
@@ -156,7 +157,7 @@ const AyalaFishinfo = () => {
                           <div className="">
                             <Form>
                               <Form.Control
-                                type="email"
+                                type="text"
                                 placeholder="1"
                                 onChange={(e) => e.target.value}
                                 value={weight}

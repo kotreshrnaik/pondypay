@@ -54,6 +54,7 @@ import Tunainfo from "./Components/ProductsDetails/Tunainfo";
 import Grouperinfo from "./Components/ProductsDetails/Gouperinfo";
 import SardineFishinfo from "./Components/ProductsDetails/SardineFishinfo";
 import Checkout from "./Components/Checkout/Checkout";
+import Register from './Components/Checkout/Register';
 
 function App() {
   return (
@@ -96,7 +97,7 @@ function App() {
             <Route path="/product/red-snapper" element={<RedSnapperinfo />}></Route>
             <Route path="/product/black-snapper" element={<BlackSnapperinfo />}></Route>
             <Route path="/product/black-pomfret" element={<BlackPomfretinfo />}></Route>
-            <Route path="/product/white-snapper" element={<WhitePomfretinfo />}></Route>
+            <Route path="/product/white-snapper" element={<WhiteSnapperinfo />}></Route>
             <Route path="/product/mahi-fish" element={<MahiFishinfo />}></Route>
             <Route path="/product/indian-salmon-fish" element={<IndianSalmonFishinfo />}></Route>
             <Route path="/product/sole-fish" element={<SoleFishinfo />}></Route>
@@ -110,7 +111,8 @@ function App() {
             <Route path="/product/Tuna-fish" element={<Tunainfo />}></Route>
             <Route path="/product/grouper-fish" element={<Grouperinfo />}></Route>
             <Route path="/product/sardine-fish" element={<SardineFishinfo />}></Route>
-            <Route path="/register" element={<Checkout />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/register" element={<Register />}></Route>
           </Routes>
           <Footer />
         </Router>

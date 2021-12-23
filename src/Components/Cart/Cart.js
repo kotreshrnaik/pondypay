@@ -67,7 +67,7 @@ const Cart = () => {
               )}
               {cartItems && cartItems.length > 0 ? (
                 <div className="text-center m-2">
-                  <button onClick={ () => history("\checkout") } className="btn btn-success">
+                  <button onClick={ () => history("/checkout") } className="btn btn-success">
                     Proceed to Checkout
                   </button>
                 </div>
