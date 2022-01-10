@@ -5,7 +5,6 @@ import TopMenuBar from "./Components/Includes/TopMenuBar";
 import About from "./Components/About/About";
 import Contact from "./Components/Contact/Contact";
 import Products from "./Components/Products/Products";
-import Gallery from "./Components/Gallery/Gallery";
 import Footer from "./Components/Includes/Footer";
 import VanjaramFish from "./Components/Products/VanjaramFish";
 import { Provider } from "react-redux";
@@ -32,7 +31,6 @@ import TunaFish from './Components/Products/TunaFish';
 import GrouperFish from './Components/Products/GrouperFish';
 import SardineFish from './Components/Products/SardineFish';
 import EditProduct from './Components/Dashboard/EditProduct';
-import Sample from './Components/ProductsDetails/AyalaFishinfo';
 import AyalaFishinfo from "./Components/ProductsDetails/AyalaFishinfo";
 import BlackPomfretinfo from "./Components/ProductsDetails/BlackPomfretinfo";
 import VanjaramFishinfo from "./Components/ProductsDetails/VanjaramFishinfo";
@@ -55,19 +53,19 @@ import Grouperinfo from "./Components/ProductsDetails/Gouperinfo";
 import SardineFishinfo from "./Components/ProductsDetails/SardineFishinfo";
 import Checkout from "./Components/Checkout/Checkout";
 import Register from './Components/Checkout/Register';
+import Login from "./Components/Checkout/Login";
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
         <Router>
-          <TopMenuBar />
+          <TopMenuBar />  
           <Routes>
-            <Route path="/" index element={<Home />}></Route>
+            <Route path="/pondybay" index element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/products" element={<Products />}></Route>
-            <Route path="/gallery" element={<Gallery />}></Route>
             <Route path="/vanjaram-fish" element={<VanjaramFish />}></Route>
             <Route path="/prawns" element={<Prawns />}></Route>
             <Route path="/cobia" element={<Cobia />}></Route>
@@ -113,6 +111,7 @@ function App() {
             <Route path="/product/sardine-fish" element={<SardineFishinfo />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/login" element={<Login />}></Route>
           </Routes>
           <Footer />
         </Router>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Nav,
@@ -12,6 +12,15 @@ import Logo from "../../Images/logo.png";
 import { useSelector } from 'react-redux';
 
 const TopMenuBar = () => {
+
+  const [login, Setlogin] = useState(false);
+
+  const token = localStorage.getItem('Token');
+
+  if(token !== ""){
+    Setlogin(true);
+  }
+
   const cartItems = useSelector(state =>{
     if(state && state.items && state.items.length > 0)
     {
@@ -32,8 +41,7 @@ const TopMenuBar = () => {
                 <div className="text-md-start ">
                   <a
                     className="nav-link p-0 ps-2 pe-2"
-                    as={Link}
-                    to="mailto:pondybayseafood@gmail.com"
+                    href="mailto:pondybayseafood@gmail.com"
                   >
                     <i className="fas fa-envelope-open-text"></i>{" "}
                     pondybayseafood@gmail.com{" "}
@@ -43,8 +51,7 @@ const TopMenuBar = () => {
                 <div className="text-center ">
                   <a
                     className="nav-link p-0 ps-2 pe-2"
-                    as={Link}
-                    to="tel:+123 456 7890"
+                    href="tel:+123 456 7890"
                   >
                     <i className="fas fa-phone-volume"></i> +123 456 7890
                   </a>
@@ -67,9 +74,11 @@ const TopMenuBar = () => {
                 </div>
                 <div className="nav-link p-0 ps-2 pe-2">|</div>
                 <div>
-                  <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
+                  {login ? <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
+                    Logout
+                  </Nav.Link> : <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
                     Login
-                  </Nav.Link>
+                  </Nav.Link>}
                 </div>
               </div>
             </Col>
@@ -91,7 +100,7 @@ const TopMenuBar = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto ms-auto">
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/pondybay">
                   HOME
                 </Nav.Link>
                 <Nav.Link as={Link} to="/about">

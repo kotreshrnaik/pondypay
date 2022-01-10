@@ -4,7 +4,6 @@ import sampleFish from "../../Images/Gallery/sample.png";
 import SampleTabs from "./SampleTabs";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./../../Store/actions";
-import { Link } from "react-router-dom";
 
 const AyalaFishinfo = () => {
 
@@ -69,7 +68,7 @@ const AyalaFishinfo = () => {
         })
       );
     }
-  }, [cartItems]);
+  }, [cartItems, FishData]);
 
   const [weight, Setweight] = useState(0.5);
   const [Price, Setprice] = useState(30); 
@@ -79,8 +78,9 @@ const AyalaFishinfo = () => {
     Setprice(weight * 60);
   };
 
-  const DecrementCouter = (id) => {
+  const DecrementCouter = (id, price) => {
     console.log(id);
+    console.log(price)
     if (weight === 0.5) {
       Setweight(0.5);
       Setprice(weight * 60);
@@ -149,7 +149,7 @@ const AyalaFishinfo = () => {
                           <div className="">
                             <p
                               className="text-center border p-2 ps-3 pe-3 fw-bold"
-                              onClick={() => DecrementCouter(item.id)}
+                              onClick={() => DecrementCouter(item.id, item.price)}
                             >
                               -
                             </p>

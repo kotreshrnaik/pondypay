@@ -12,7 +12,7 @@ const Dashboard = () => {
   const handleDeleteClick = (id) => {
     // console.log("delete");
     axios
-      .get("http://localhost/react-projects/pondypay/Api/delete.php?id=" + id)
+      .get("http://webmillionservices.com/pondybay/Api/delete.php?id=" + id)
       .then((response) => {
         console.log(response);
       })
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost/react-projects/pondypay/Api/getdata.php")
+      .get("http://webmillionservices.com/pondybay/Api/getdata.php")
       .then((response) => {
         SetProductInfo(response.data);
       })
@@ -82,7 +82,7 @@ const Dashboard = () => {
 
                     axios
                       .post(
-                        "http://localhost/react-projects/pondypay/Api/savedata.php",
+                        "http://webmillionservices.com/pondybay/Api/savedata.php",
                         data
                       )
                       .then((response) => {
@@ -156,7 +156,7 @@ const Dashboard = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>Image URL</Form.Label>
                           <Form.Control
-                            placeholder="http://localhost/react-projects/pondypay/Api/images/"
+                            placeholder="http://webmillionservices.com/pondybay/Api/images/"
                             type="text"
                             name="imgURL"
                             onChange={handleChange}

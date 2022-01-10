@@ -5,8 +5,6 @@ import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AboutImage from "../../Images/slider/Front-Page.png";
 import Testimonials from "./../Includes/Testimonials";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "./../../Store/actions";
 import axios from "axios";
 
 const Home = () => {
@@ -14,47 +12,17 @@ const Home = () => {
 
   const [FishData, SetFishData] = useState(initialData);
 
-  const dispatch = useDispatch();
-  const handleAddItem = (item) => {
-    dispatch(addItem(item));
-  };
-
-  const cartItems = useSelector((state) => {
-    if (state && state.items && state.items.length > 0) {
-      return state.items;
-    } else {
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    if (cartItems && cartItems.length > 0) {
-      SetFishData(
-        FishData.map((products) => {
-          let itemInCart = cartItems.find(
-            (cartItems) => cartItems.id === products.id
-          );
-
-          if (itemInCart) {
-            products.isAdded = true;
-          }
-          return products;
-        })
-      );
-    }
-  }, [cartItems]);
-
   useEffect(() => {
     axios
-      .get("http://localhost/react-projects/pondypay/Api/getdata.php")
+      .get("http://webmillionservices.com/pondybay/Api/getdata.php")
       .then((response) => {
-        // console.log(response);
+         console.log(response);
         SetFishData(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div>

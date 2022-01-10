@@ -13,8 +13,8 @@
     $alt = $data->alt;
 
     // echo $img;
-
-    $con = mysqli_connect("localhost", "root", "", "pondybay") or die("Couldn't connect to the server'");
+    $con = mysqli_connect("localhost", "Pondybay2021", "Pondybay2021", "pondybay") or die("Couldn't connect to the server'");
+    //$con = mysqli_connect("localhost", "root", "", "pondybay") or die("Couldn't connect to the server'");
 
     mysqli_query($con, "insert into productinfo (productTitle, price, price1, description, imgURL, alt) values('$productTitle', '$price', '$price1', '$description', '$imgURL', '$alt')");
 

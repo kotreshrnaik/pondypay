@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-const Checkout = () => {
+const Login = () => {
   const [formStatus, setformStatus] = useState("");
   const initialValues = {
     firstname: "",
@@ -15,24 +15,24 @@ const Checkout = () => {
   };
 
   const onSubmit = (values) => {
+    const Price = 120;
     const data = values;
 
     axios
       .get(
-        "http://webmillionservices.com/pondybay/Api/user/register.php?sendto=" +
+        "http://webmillionservices.com/pondybay/Api/user/login.php?sendto=" +
           data.email +
-          "&firstname=" +
-          data.firstname+
-          "&lastname=" +
-          data.lastname +
-          "&phone=" +
-          data.phone +
           "&password=" +
-          data.password 
+          data.password
       )
       .then(function (response) {
         console.log(response);
-        setformStatus(response.data);
+        setformStatus("Login Successfull");
+
+        localStorage.setItem('Token', response.data);
+        
+        displayRazorpay(Price, data.name, data.email, data.phone);
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -40,24 +40,90 @@ const Checkout = () => {
       });
   };
 
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
+  
   const validationSchema = Yup.object({
-    firstname: Yup.string().required("Required"),
-    lastname: Yup.string().required("Required"),
     email: Yup.string().required("required").email("Invalid email format"),
-    phone: Yup.string()
-      .required("required")
-      .matches(phoneRegExp, "Phone No is not valid")
-      .min(10, "Phone No Minimum 10 Digits")
-      .max(10, "Phone No Minimum 10 Digits"),
     password: Yup.string()
         .required("required")
         .min(6, "Phone No Minimum 6 Digits"),
   });
 
-  
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+
+      script.onload = () => {
+        resolve(true);
+      };
+
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async (amount, username, useremail, userphone) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("You are offline..");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_YPt7F9CZJqkwGO",
+      currency: "INR",
+      amount: amount * 100,
+      contact: userphone,
+      email: useremail,
+      name: username,
+      description: "Payment for Course",
+
+      handler: function (response) {
+        // alert(response.razorpay_payment_id);
+        // console.log(response)
+        // console.log(username)
+        const paymentid = response.razorpay_payment_id;
+        const Values = {
+          paymentid,
+          username,
+          useremail,
+        }
+
+        // console.log(Values);
+
+        axios.post('https://digitalagilityinstitute.com/Api/Payment/payment.php', Values)
+        .then(function (response) {
+          
+          // console.log(response);
+          // setformStatus(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+          // setformStatus(error.data);
+        });
+
+        // alert("Success payment Done.");
+        
+
+          // history.push('/success');
+        
+      },
+      prefill: {
+        name: username,
+        contact: userphone,
+        email: useremail,
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
 
   return (
     <div className="bg-light pt-3 pb-3 pt-md-5 pb-md-5">
@@ -73,42 +139,8 @@ const Checkout = () => {
               >
                 <Form className="bg-white p-3 shadow rounded">
                   <h2 className="pb-2 text-center text-primary">
-                    Register
+                    Login
                   </h2>
-                  <Row className="mb-3">
-                    <Col md={6}>
-                      <div className="mb-3">
-                        <label htmlFor="name" className="form-label">
-                          First Name
-                        </label>
-                        <Field
-                          type="text"
-                          className="form-control"
-                          id="firstname"
-                          name="firstname"
-                        />
-                        <small className="text-danger">
-                          <ErrorMessage name="firstname" />
-                        </small>
-                      </div>
-                    </Col>
-                    <Col md={6}>
-                      <div className="mb-3">
-                        <label htmlFor="lastname" className="form-label">
-                          Last Name
-                        </label>
-                        <Field
-                          type="text"
-                          className="form-control"
-                          id="lastname"
-                          name="lastname"
-                        />
-                        <small className="text-danger">
-                          <ErrorMessage name="lastname" />
-                        </small>
-                      </div>
-                    </Col>
-                  </Row>
                   <Row className="mb-3">
                     <Col md={12}>
                       <div className="mb-3">
@@ -123,24 +155,6 @@ const Checkout = () => {
                         />
                         <small className="text-danger">
                           <ErrorMessage name="email" />
-                        </small>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row className="mb-3">
-                    <Col md={12}>
-                      <div className="mb-3">
-                        <label htmlFor="phone" className="form-label">
-                          Phone No
-                        </label>
-                        <Field
-                          type="tel"
-                          className="form-control"
-                          id="phone"
-                          name="phone"
-                        />
-                        <small className="text-danger">
-                          <ErrorMessage name="phone" />
                         </small>
                       </div>
                     </Col>
@@ -176,10 +190,10 @@ const Checkout = () => {
                     <Col md={12}>
                       <div className="text-center">
                         <Button className="btn btn-primary mx-3 text-white" type="submit">
-                          Submit
+                          Login
                         </Button>
                         <a className="btn btn-secondary" href="/">
-                          Login
+                          Register
                         </a>
                       </div>
                     </Col>
@@ -194,4 +208,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default Login;

@@ -12,8 +12,7 @@ export default function Validation(values) {
     //Email address
     if(!values.email.trim()) {
         errors.email = "Email address is required";
-    } else if (!values.email.trim() === /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)
-    { 
+    } else {
         errors.email = "Enter the valid email address";
     }
 

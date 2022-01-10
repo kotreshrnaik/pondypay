@@ -12,7 +12,6 @@ import sampleFish from "../../Images/Gallery/sample.png";
 import SampleTabs from "../ProductsDetails/SampleTabs";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "./../../Store/actions";
-import { Link } from "react-router-dom";
 
 const BlackSnapper = () => {
   const initialData = [
@@ -76,7 +75,7 @@ const BlackSnapper = () => {
         })
       );
     }
-  }, [cartItems]);
+  }, [cartItems, FishData]);
 
   const [weight, Setweight] = useState(0.5);
   const [Price, Setprice] = useState(30);

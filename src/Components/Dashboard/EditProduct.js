@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { Formik } from "formik";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const EditProduct = () => {
-  let history = useNavigate();
+  // let history = useNavigate();
 
   const { id } = useParams();
 
@@ -32,7 +32,7 @@ const EditProduct = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id, values]);
 
   //   console.log(values)
 
