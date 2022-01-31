@@ -1,36 +1,17 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Nav,
-  Navbar,
-  Image,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../Images/logo.png";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const TopMenuBar = () => {
-
-  const [login, Setlogin] = useState(false);
-
-  const token = localStorage.getItem('Token');
-
-  if(token !== ""){
-    Setlogin(true);
-  }
-
-  const cartItems = useSelector(state =>{
-    if(state && state.items && state.items.length > 0)
-    {
-      return state.items
-    }
-    else 
-    {
+  const cartItems = useSelector((state) => {
+    if (state && state.items && state.items.length > 0) {
+      return state.items;
+    } else {
       return [];
     }
-  })
+  });
   return (
     <>
       <div id="top-header" className="bg-primary text-white p-1">
@@ -74,11 +55,9 @@ const TopMenuBar = () => {
                 </div>
                 <div className="nav-link p-0 ps-2 pe-2">|</div>
                 <div>
-                  {login ? <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
-                    Logout
-                  </Nav.Link> : <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
+                  <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
                     Login
-                  </Nav.Link>}
+                  </Nav.Link>
                 </div>
               </div>
             </Col>
@@ -127,10 +106,10 @@ const TopMenuBar = () => {
                   SEARCH
                 </Nav.Link>
                 <Nav.Link className="position-relative" as={Link} to="/cart">
-                    <i className="fas fa-shopping-cart text-primary"></i>
-                    <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-primary">
-                      {cartItems.length}
-                    </span>
+                  <i className="fas fa-shopping-cart text-primary"></i>
+                  <span className="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-primary">
+                    {cartItems.length}
+                  </span>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>

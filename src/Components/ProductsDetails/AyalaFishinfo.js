@@ -70,7 +70,7 @@ const AyalaFishinfo = () => {
     }
   }, [cartItems, FishData]);
 
-  const [weight, Setweight] = useState(0.5);
+  const [weight, Setweight] = useState('');
   const [Price, Setprice] = useState(30); 
 
   const IncrementCouter = () => {
