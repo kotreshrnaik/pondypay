@@ -15,13 +15,13 @@ app.use(cors());
 //     database: "pondybay",
 // })
 
-app.get('/api', (req, res) => {
-    res.json({
-        success: 1, 
-        message: "This rest API is working"
-    })
-})
+// app.get('/api', (req, res) => {
+//     res.json({
+//         success: 1, 
+//         message: "This rest API is working"
+//     })
+// })
 
-app.listen(process.env.APP_PORT, () => { 
-    console.log("listening on port 4000")
-})
+// app.listen(process.env.APP_PORT, () => { 
+//     console.log("listening on port 4000")
+// })
