@@ -73,9 +73,10 @@ const Grouperinfo = () => {
   const [weight, Setweight] = useState(0.5);
   const [Price, Setprice] = useState(30); 
 
-  const IncrementCouter = () => {
-    Setweight(weight + 0.5);
-    Setprice(weight * 60);
+  const IncrementCouter = (idv) => {
+    // console.log(id)
+    var ele = document.getElementById("get"+idv);
+    console.log(ele)
   };
 
   const DecrementCouter = () => {
@@ -152,7 +153,7 @@ const Grouperinfo = () => {
                               -
                             </p>
                           </div>
-                          <div className="">
+                          <div className="" id={`get${item.id}`}>
                             <Form>
                               <Form.Control
                                 type="email"
@@ -163,10 +164,10 @@ const Grouperinfo = () => {
                               />
                             </Form>
                           </div>
-                          <div className="">
+                          <div className="" id={`inc${item.id}`}>
                             <p
                               className="text-center border p-2 ps-3 pe-3 fw-bold"
-                              onClick={IncrementCouter}
+                              onClick={IncrementCouter(item.id)}
                             >
                               +
                             </p>

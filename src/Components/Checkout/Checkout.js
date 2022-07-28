@@ -18,25 +18,18 @@ const Checkout = () => {
     const data = values;
 
     axios
-      .get(
-        "http://webmillionservices.com/pondybay/Api/user/register.php?sendto=" +
-          data.email +
-          "&firstname=" +
-          data.firstname+
-          "&lastname=" +
-          data.lastname +
-          "&phone=" +
-          data.phone +
-          "&password=" +
-          data.password 
-      )
+      .post("/api/users/", data)
       .then(function (response) {
-        console.log(response);
-        setformStatus(response.data);
+        // console.log(typeof(response.data.success));
+        if(response.data.success === 1 ) {
+          setformStatus("Successfully registered your account");
+        } else {
+          setformStatus(response.data.message);
+        }
       })
       .catch(function (error) {
         console.log(error);
-        setformStatus(error.data);
+        setformStatus(error.data.message);
       });
   };
 
@@ -53,11 +46,9 @@ const Checkout = () => {
       .min(10, "Phone No Minimum 10 Digits")
       .max(10, "Phone No Minimum 10 Digits"),
     password: Yup.string()
-        .required("required")
-        .min(6, "Phone No Minimum 6 Digits"),
+      .required("required")
+      .min(6, "Phone No Minimum 6 Digits"),
   });
-
-  
 
   return (
     <div className="bg-light pt-3 pb-3 pt-md-5 pb-md-5">
@@ -65,16 +56,13 @@ const Checkout = () => {
         <Row className="justify-content-center">
           <Col md={6}>
             <div className="mt-2 mb-2">
-
               <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
               >
                 <Form className="bg-white p-3 shadow rounded">
-                  <h2 className="pb-2 text-center text-primary">
-                    Register
-                  </h2>
+                  <h2 className="pb-2 text-center text-primary">Register</h2>
                   <Row className="mb-3">
                     <Col md={6}>
                       <div className="mb-3">
@@ -175,7 +163,10 @@ const Checkout = () => {
                   <Row className="mb-3">
                     <Col md={12}>
                       <div className="text-center">
-                        <Button className="btn btn-primary mx-3 text-white" type="submit">
+                        <Button
+                          className="btn btn-primary mx-3 text-white"
+                          type="submit"
+                        >
                           Submit
                         </Button>
                         <a className="btn btn-secondary" href="/">

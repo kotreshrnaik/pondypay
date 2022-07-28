@@ -10,8 +10,8 @@
     // echo $id;
 
     
-    $con = mysqli_connect("localhost", "Pondybay2021", "Pondybay2021", "pondybay") or die("Couldn't connect to the server'");
-    // $con = mysqli_connect("localhost", "root", "", "pondybay") or die("Couldn't connect to the server'");
+    // $con = mysqli_connect("localhost", "Pondybay2021", "Pondybay2021", "pondybay") or die("Couldn't connect to the server'");
+    $con = mysqli_connect("localhost", "root", "", "pondybay") or die("Couldn't connect to the server'");
 
     $result = mysqli_query($con, "SELECT * FROM productinfo where id = $id");
 

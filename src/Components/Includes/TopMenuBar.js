@@ -3,6 +3,8 @@ import { Container, Nav, Navbar, Image, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Logo from "../../Images/logo.png";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
 
 const TopMenuBar = () => {
   const cartItems = useSelector((state) => {
@@ -12,6 +14,31 @@ const TopMenuBar = () => {
       return [];
     }
   });
+
+  const [userLogin, SetUserLogin] = useState(false);
+
+  const handleLogout = () => {
+    SetUserLogin(localStorage.setItem("LoggedIn", false));
+    SetUserLogin(localStorage.setItem("Token", null));
+    
+  };
+
+  useEffect(() => {
+    SetUserLogin(localStorage.getItem("LoggedIn"));
+  }, []);
+
+  let links;
+
+  if (userLogin) {
+    links = <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/pondybay" onClick={handleLogout}>
+      Logout
+    </Nav.Link>;
+  } else {
+    links = <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/login">
+      Login
+    </Nav.Link>;
+  }
+
   return (
     <>
       <div id="top-header" className="bg-primary text-white p-1">
@@ -55,9 +82,7 @@ const TopMenuBar = () => {
                 </div>
                 <div className="nav-link p-0 ps-2 pe-2">|</div>
                 <div>
-                  <Nav.Link className="p-0 ps-2 pe-2" as={Link} to="/">
-                    Login
-                  </Nav.Link>
+                  {links}
                 </div>
               </div>
             </Col>

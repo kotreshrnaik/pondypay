@@ -5,12 +5,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  // const handleEditClick = (id) => {
-  //   // console.log("edit");
-  // };
 
   const handleDeleteClick = (id) => {
-    // console.log("delete");
     axios
       .get("http://webmillionservices.com/pondybay/Api/delete.php?id=" + id)
       .then((response) => {

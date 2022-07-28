@@ -68,7 +68,7 @@ const BlackSnapperinfo = () => {
         })
       );
     }
-  }, [cartItems, FishData]);
+  }, [cartItems]);
   
   const [weight, Setweight] = useState(0.5);
   const [Price, Setprice] = useState(30); 

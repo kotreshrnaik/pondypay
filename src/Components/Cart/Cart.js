@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import { removeItem } from "../../Store/actions";
 import { useNavigate } from "react-router-dom"
+import Login from "../Checkout/Login";
+import Payment from "../Checkout/Payment";
 
 const Cart = () => {
   const history = useNavigate();
@@ -23,6 +25,24 @@ const Cart = () => {
         }, 0)
       : 0;
   };
+
+  const checkLogin = () => {
+    if (userLogin) {
+      history('/payment')
+    } else {
+      history('/login')
+    }
+  }
+
+  const [userLogin, SetUserLogin] = useState()
+  console.log(userLogin);
+
+  useEffect(() => {
+    SetUserLogin(localStorage.getItem("LoggedIn"));
+    checkLogin();
+  }, [userLogin]);
+
+  
   return (
     <div>
       <Container>
@@ -48,7 +68,7 @@ const Cart = () => {
                           <td>{index + 1}</td>
                           <td>{item.title}</td>
                           <td>Rs. {item.price}</td>
-                          <td onClick={ () => dispatch(removeItem(item)) }><i class="far fa-trash-alt"></i></td>
+                          <td onClick={ () => dispatch(removeItem(item)) }><i className="far fa-trash-alt"></i></td>
                         </tr>
                       ))}
                     <tr>
@@ -67,7 +87,7 @@ const Cart = () => {
               )}
               {cartItems && cartItems.length > 0 ? (
                 <div className="text-center m-2">
-                  <button onClick={ () => history("/checkout") } className="btn btn-success">
+                  <button onClick={ () => history("/checkout"), checkLogin } className="btn btn-success">
                     Proceed to Checkout
                   </button>
                 </div>

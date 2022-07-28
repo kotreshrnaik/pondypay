@@ -54,13 +54,17 @@ import SardineFishinfo from "./Components/ProductsDetails/SardineFishinfo";
 import Checkout from "./Components/Checkout/Checkout";
 import Register from './Components/Checkout/Register';
 import Login from "./Components/Checkout/Login";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Payment from "./Components/Checkout/Payment";
 
 function App() {
+
   return (
     <div className="App">
       <Provider store={store}>
         <Router>
-          <TopMenuBar />  
+          <TopMenuBar/>  
           <Routes>
             <Route path="/pondybay" index element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
@@ -112,6 +116,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/payment" element={<Payment />}></Route>
           </Routes>
           <Footer />
         </Router>

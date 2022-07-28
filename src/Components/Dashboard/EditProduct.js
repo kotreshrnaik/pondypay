@@ -8,13 +8,14 @@ const EditProduct = () => {
   // let history = useNavigate();
 
   const { id } = useParams();
+  console.log(id)
 
   const [values, Setvalues] = useState();
 
   useEffect(() => {
     axios
       .get(
-        "http://localhost/react-projects/pondypay/Api/getdatabyid.php?id=" + id
+        "http://localhost/pondypay/api/getdatabyid.php?id=" + id
       )
       .then((response) => {
         console.log(response.data[0]);
@@ -28,11 +29,12 @@ const EditProduct = () => {
         document.getElementById("alt").value = response.data[0].alt;
         document.getElementById("description").value =
           response.data[0].description;
+        
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [id, values]);
+  }, []);
 
   //   console.log(values)
 
@@ -86,7 +88,7 @@ const EditProduct = () => {
 
                     axios
                       .post(
-                        "http://localhost/react-projects/pondypay/Api/update.php",
+                        "http://localhost/pondypay/api/update.php",
                         data
                       )
                       .then((response) => {
@@ -163,7 +165,7 @@ const EditProduct = () => {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>Image URL</Form.Label>
                           <Form.Control
-                            placeholder="http://localhost/react-projects/pondypay/Api/images/"
+                            placeholder="http://localhost/pondypay/api/images/"
                             type="text"
                             id="imgURL"
                             name="imgURL"
